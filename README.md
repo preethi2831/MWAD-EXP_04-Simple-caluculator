@@ -1,5 +1,5 @@
 # MWAD-EXP_04-Simple-caluculator
-## Date:
+## Date:  07/10/2025
 
 ## AIM
 To  develop a Simple Calculator using React.js with clean and responsive design, ensuring a smooth user experience across different screen sizes.
@@ -47,9 +47,120 @@ Upload to GitHub Pages for free hosting.
 
 ## PROGRAM
 
+Calculator.jsx
+```
+import React, { useState } from 'react';
+
+function Calculator() {
+  const [input, setInput] = useState('');
+
+  const handleClick = (value) => {
+    if (value === '=') {
+      try {
+        setInput(eval(input).toString());
+      } catch {
+        setInput('Error');
+      }
+    } else if (value === 'C') {
+      setInput('');
+    } else {
+      setInput(input + value);
+    }
+  };
+
+  const buttons = ['7', '8', '9', '/', '4', '5', '6', '*',
+                   '1', '2', '3', '-', '0', '.', '=', '+', 'C'];
+
+  return (
+    <div className="calculator">
+      <h3>Simple Calculator</h3>
+      <input value={input} readOnly className="display" />
+      <div className="button-grid">
+        {buttons.map((btn) => (
+          <button key={btn} onClick={() => handleClick(btn)}>{btn}</button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Calculator;
+```
+
+Calculator.css
+```
+.calculator {
+  max-width: 250px;
+  margin: 40px auto;
+  padding: 15px;
+  text-align: center;
+  background-color: #000000;
+  border-radius: 8px;
+}
+
+.display {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  text-align: right;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Colors */
+button:nth-child(n) {
+  background-color: #87ceeb; /* sky blue for default */
+  color: #000;
+}
+
+button:nth-child(4n) {
+  background-color: #ffb347; /* orange for operators */
+}
+
+button:nth-child(17), button:nth-child(18) {
+  background-color: #ff6961; /* red for C and = */
+  color: white;
+}
+```
+
+App.jsx
+```
+import React from 'react';
+import Calculator from './Calculator';
+import './Calculator.css';
+
+function App() {
+  return (
+    <div className="App">
+      <Calculator />
+    </div>
+  );
+}
+
+export default App;
+```
 
 ## OUTPUT
 
+<img width="1267" height="660" alt="image" src="https://github.com/user-attachments/assets/f25ad818-f41e-4ef2-9b27-2ec58a215bf8" />
+
+<img width="1405" height="653" alt="image" src="https://github.com/user-attachments/assets/13e60964-95b7-4d5a-af23-3bc580aac4d7" />
 
 ## RESULT
 The program for developing a simple calculator in React.js is executed successfully.
